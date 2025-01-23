@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   List toDoList = [
     ['Learn flutter', false],
     ['Learn Data Structures', false],
+    ['Learn React', false],
   ];
 
   void handleToDoChange(bool? value, int index) {
@@ -29,16 +30,43 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
       ),
+      
       body: ListView.builder(
         itemCount: toDoList.length,
+      
         itemBuilder: (BuildContext context, index) {
           return TodoList(
             taskName: toDoList[index][0],
             isCompleted: toDoList[index][1],
             onChanged: (value) => handleToDoChange(value, index),
           );
-        },
+       },
       ),
+
+      floatingActionButton: Row(children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "Add a new toDo item",
+                filled: true,
+                fillColor: Colors.deepPurple.shade200,
+
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.white),
+                  borderRadius: BorderRadius.circular(14), 
+                  
+                )
+              ),
+            )
+            ),
+
+        ),
+        FloatingActionButton(onPressed:(){},
+        child: Icon(Icons.add),
+        )
+      ],)
     );
   }
 }
